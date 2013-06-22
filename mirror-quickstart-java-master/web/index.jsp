@@ -22,6 +22,8 @@ limitations under the License.
 <%@ page import="com.google.api.services.mirror.model.TimelineItem" %>
 <%@ page import="com.google.api.services.mirror.model.Subscription" %>
 <%@ page import="com.google.api.services.mirror.model.Attachment" %>
+<%@ page import="com.google.appengine.tools.remoteapi.RemoteApiInstaller" %>
+<%@ page import="com.google.appengine.tools.remoteapi.RemoteApiOptions" %>
 <%@ page import="com.google.glassware.MainServlet" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -53,36 +55,30 @@ limitations under the License.
       }
     }
   }
+  
+  // ...
+  RemoteApiOptions options = new RemoteApiOptions()
+	.server("glassfitpro.appspot.com", 443)
+	.credentials(username, password);
+	
+  RemoteApiInstaller installer = new RemoteApiInstaller();
+	installer.install(options);
+	// ... all API calls executed remotely
+	installer.uninstall();
 
 %>
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Glassware Starter Project</title>
-  <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet"
-        media="screen">
-
-  <style>
-    .button-icon {
-      max-width: 75px;
-    }
-
-    .tile {
-      border-left: 1px solid #444;
-      padding: 5px;
-      list-style: none;
-    }
-
-    .btn {
-      width: 100%;
-    }
-  </style>
+  <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+  <link href="/static/css/style.css" rel="stylesheet" media="screen">
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a class="brand" href="#">Glassware Starter Project: Java Edition</a>
+      <h3 class="brand" href="#">GlassFit</h3>
 
       <div class="nav-collapse collapse">
         <form class="navbar-form pull-right" action="/signout" method="post">
@@ -98,7 +94,7 @@ limitations under the License.
 
   <!-- Main hero unit for a primary marketing message or call to action -->
   <div class="hero-unit">
-    <h1>Your Recent Timeline</h1>
+    <h1>Most Recent Fitness Timeline</h1>
     <% String flash = WebUtil.getClearFlash(request);
       if (flash != null) { %>
     <span class="label label-warning">Message: <%= flash %> </span>
@@ -138,6 +134,11 @@ limitations under the License.
       } %>
     </div>
     <div style="clear:both;"></div>
+  </div>
+
+  <div class="row center">
+  	<h5><i>input the total number of calories you are aiming to maintain per day</i></h5>
+  	<h2 class="inline">Total Daily Calorie Aspiration: </h2><input placeholder="1500" class="inline" style="width:200px" /> calories
   </div>
 
   <!-- Example row of columns -->
