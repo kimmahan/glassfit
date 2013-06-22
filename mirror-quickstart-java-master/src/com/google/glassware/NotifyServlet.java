@@ -127,7 +127,7 @@ public class NotifyServlet extends HttpServlet {
         // Create a new timeline item with the attachment
         TimelineItem echoPhotoItem = new TimelineItem();
         echoPhotoItem.setNotification(new NotificationConfig().setLevel("DEFAULT"));
-        echoPhotoItem.setText("Echoing your shared photo");
+        echoPhotoItem.setText("Your meal was received and logged");
 
         MirrorClient.insertTimelineItem(credential, echoPhotoItem, "image/jpeg", stream);
 

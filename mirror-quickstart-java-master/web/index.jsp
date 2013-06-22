@@ -84,7 +84,7 @@ limitations under the License.
 
   <!-- Main hero unit for a primary marketing message or call to action -->
   <div class="hero-unit">
-    <h1>Most Recent GlassFit Updates</h1>
+    <h2>Most Recent GlassFit Updates</h2>
     <% String flash = WebUtil.getClearFlash(request);
       if (flash != null) { %>
     <span class="label label-warning">Message: <%= flash %> </span>
@@ -95,14 +95,19 @@ limitations under the License.
       <% if (timelineItems != null) {
         for (TimelineItem timelineItem : timelineItems) { %>
       <ul class="span3 tile">
-        <li><strong>ID: </strong> <%= timelineItem.getId() %>
-        </li>
+        <!--<li><strong>ID: </strong> <%= timelineItem.getId() %>
+        </li>-->
+        <% if (timelineItem.getText() != null) { %>
         <li>
           <strong>Text: </strong> <%= timelineItem.getText() %>
         </li>
+        <% } %>
+        <% if (timelineItem.getHtml() != null) { %>
         <li>
           <strong>HTML: </strong> <%= timelineItem.getHtml() %>
         </li>
+        <% } %>
+        <% if (timelineItem.getAttachments() != null) { %>
         <li>
           <strong>Attachments: </strong>
           <%
@@ -118,6 +123,7 @@ limitations under the License.
             }
           } %>
         </li>
+        <% } %>
 
       </ul>
       <% }
@@ -126,38 +132,37 @@ limitations under the License.
     <div style="clear:both;"></div>
   </div>
 
-  <div class="row center">
+  <div class="row center calorie-count">
   	<h5><i>input the total number of calories you are aiming to maintain per day</i></h5>
   	<h2 class="inline">Total Daily Calorie Aspiration: </h2><input placeholder="1500" class="inline" style="width:200px" /> calories
   </div>
+  
+  <hr>
 
   <!-- Example row of columns -->
   <div class="row">
     <div class="span4">
       <h2>Timeline</h2>
 
-      <p>When you first sign in, this Glassware inserts a welcome message. Use
-        these controls to insert more items into your timeline. Learn more about
-        the timeline APIs
-        <a href="https://developers.google.com/glass/timeline">here</a></p>
+      <p>Examples of timeline APIs</p>
 
 
       <form action="<%= WebUtil.buildUrl(request, "/main") %>" method="post">
         <input type="hidden" name="operation" value="insertItem">
-        <textarea name="message">Hello World!</textarea><br/>
+        <textarea name="message">Send a custom message.</textarea><br/>
         <button class="btn" type="submit">The above message</button>
       </form>
 
       <form action="<%= WebUtil.buildUrl(request, "/main") %>" method="post">
         <input type="hidden" name="operation" value="insertItem">
-        <input type="hidden" name="message" value="Chipotle says 'hi'!">
+        <input type="hidden" name="message" value="Your meal was recorded">
         <input type="hidden" name="imageUrl" value="<%= appBaseUrl +
-               "static/images/chipotle-tube-640x360.jpg" %>">
+               "static/images/lunch.jpg" %>">
         <input type="hidden" name="contentType" value="image/jpeg">
 
         <button class="btn" type="submit">A picture
           <img class="button-icon" src="<%= appBaseUrl +
-               "static/images/chipotle-tube-640x360.jpg" %>">
+               "static/images/lunch.jpg" %>">
         </button>
       </form>
       <form action="<%= WebUtil.buildUrl(request, "/main") %>" method="post">
@@ -174,10 +179,6 @@ limitations under the License.
 
     <div class="span4">
       <h2>Contacts</h2>
-
-      <p>By default, this project inserts a single contact that accepts
-        all content types. Learn more about contacts
-        <a href="https://developers.google.com/glass/contacts">here</a>.</p>
 
       <% if (contact == null) { %>
       <form class="span3" action="<%= WebUtil.buildUrl(request, "/main") %>"
@@ -203,10 +204,6 @@ limitations under the License.
 
     <div class="span4">
       <h2>Subscriptions</h2>
-
-      <p>By default a subscription is inserted for changes to the
-        <code>timeline</code> collection. Learn more about subscriptions
-        <a href="https://developers.google.com/glass/subscriptions">here</a></p>
 
       <p class="label label-info">Note: Subscriptions require SSL. <br>They will
         not work on localhost.</p>
