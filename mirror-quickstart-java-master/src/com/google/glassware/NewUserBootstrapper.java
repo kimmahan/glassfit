@@ -52,9 +52,9 @@ public class NewUserBootstrapper {
     starterProjectContact.setId(MainServlet.CONTACT_NAME);
     starterProjectContact.setDisplayName(MainServlet.CONTACT_NAME);
     starterProjectContact.setImageUrls(Lists.newArrayList(WebUtil.buildUrl(req,
-        "/static/images/chipotle-tube-640x360.jpg")));
+        "/static/images/Logos1black.png")));
     Contact insertedContact = MirrorClient.insertContact(credential, starterProjectContact);
-    LOG.info("Bootstrapper inserted contact " + insertedContact.getId() + " for user " + userId);
+    LOG.info("New GlassFit contact " + insertedContact.getId() + " for user " + userId);
 
     try {
       // Subscribe to timeline updates
@@ -72,7 +72,7 @@ public class NewUserBootstrapper {
     timelineItem.setText("Welcome to GlassFit");
     timelineItem.setNotification(new NotificationConfig().setLevel("DEFAULT"));
     TimelineItem insertedItem = MirrorClient.insertTimelineItem(credential, timelineItem);
-    LOG.info("Bootstrapper inserted welcome message " + insertedItem.getId() + " for user "
+    LOG.info("GlassFit inserted welcome message " + insertedItem.getId() + " for user "
         + userId);
   }
 }
