@@ -58,15 +58,17 @@ limitations under the License.
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Glassware Starter Project</title>
+  <title>GlassFit Pro Photo Meal Tracking</title>
   <link href="/static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
   <link href="/static/css/style.css" rel="stylesheet" media="screen">
+  <link rel = "shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link rel = "icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <h3 class="brand" href="#">GlassFit</h3>
+      <a href="http://glassfitpro.co"><img src=""static/images/Logos1black.png"</a>
 
       <div class="nav-collapse collapse">
         <form class="navbar-form pull-right" action="/signout" method="post">
@@ -82,7 +84,7 @@ limitations under the License.
 
   <!-- Main hero unit for a primary marketing message or call to action -->
   <div class="hero-unit">
-    <h1>Most Recent Fitness Timeline</h1>
+    <h1>Most Recent GlassFit Updates</h1>
     <% String flash = WebUtil.getClearFlash(request);
       if (flash != null) { %>
     <span class="label label-warning">Message: <%= flash %> </span>
@@ -185,7 +187,7 @@ limitations under the License.
                "static/images/chipotle-tube-640x360.jpg" %>">
         <input type="hidden" name="name"
                value="<%= MainServlet.CONTACT_NAME %>">
-        <button class="btn" type="submit">Insert Java Quick Start Contact
+        <button class="btn" type="submit">Insert GlassFit Contact
         </button>
       </form>
       <% } else { %>
@@ -193,7 +195,7 @@ limitations under the License.
             method="post">
         <input type="hidden" name="operation" value="deleteContact">
         <input type="hidden" name="id" value="<%= MainServlet.CONTACT_NAME %>">
-        <button class="btn" type="submit">Delete Java Quick Start Contact
+        <button class="btn" type="submit">Delete GlassFit Contact
         </button>
       </form>
       <% } %>
