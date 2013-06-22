@@ -68,7 +68,7 @@ limitations under the License.
 <div class="navbar navbar-inverse navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <a href="http://glassfitpro.co"><img src="static/images/Logos1black.png"></a>
+      <a href="http://glassfitpro.co"><img src="static/images/logo75.png"></a>
 
       <div class="nav-collapse collapse">
         <form class="navbar-form pull-right" action="/signout" method="post">
