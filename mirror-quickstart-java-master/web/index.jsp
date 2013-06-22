@@ -22,8 +22,6 @@ limitations under the License.
 <%@ page import="com.google.api.services.mirror.model.TimelineItem" %>
 <%@ page import="com.google.api.services.mirror.model.Subscription" %>
 <%@ page import="com.google.api.services.mirror.model.Attachment" %>
-<%@ page import="com.google.appengine.tools.remoteapi.RemoteApiInstaller" %>
-<%@ page import="com.google.appengine.tools.remoteapi.RemoteApiOptions" %>
 <%@ page import="com.google.glassware.MainServlet" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -56,16 +54,6 @@ limitations under the License.
     }
   }
   
-  // ...
-  RemoteApiOptions options = new RemoteApiOptions()
-	.server("glassfitpro.appspot.com", 443)
-	.credentials(username, password);
-	
-  RemoteApiInstaller installer = new RemoteApiInstaller();
-	installer.install(options);
-	// ... all API calls executed remotely
-	installer.uninstall();
-
 %>
 <html>
 <head>
